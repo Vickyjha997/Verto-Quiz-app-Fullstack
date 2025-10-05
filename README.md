@@ -275,8 +275,8 @@ npm start
 
 ✅ Connected to SQLite database
 ✅ Foreign keys enabled
-🚀 Server running on http://localhost:8080
-📊 API available at http://localhost:8080/api/quiz
+🚀 Server running on http://localhost:5000
+📊 API available at http://localhost:5000/api/quiz
 
 ```
 
@@ -285,7 +285,7 @@ npm start
 Open your web browser and navigate to:
 ```
 
-http://localhost:8080
+http://localhost:5000
 
 ```
 
@@ -295,7 +295,7 @@ You should see the quiz listing page with 4 sample quizzes.
 
 ## 📡 API Documentation
 
-Base URL: `http://localhost:8080/api/quiz`
+Base URL: `http://localhost:5000/api/quiz`
 
 ### Admin Endpoints
 
@@ -337,7 +337,7 @@ Create a new quiz with title, description, and time window.
 **cURL Example:**
 ```
 
-curl -X POST http://localhost:8080/api/quiz/add \
+curl -X POST http://localhost:5000/api/quiz/add \
 -H "Content-Type: application/json" \
 -d '{
 "title": "JavaScript Quiz",
@@ -387,7 +387,7 @@ Add a multiple-choice question to a specific quiz.
 **cURL Example:**
 ```
 
-curl -X POST http://localhost:8080/api/quiz/1/question \
+curl -X POST http://localhost:5000/api/quiz/1/question \
 -H "Content-Type: application/json" \
 -d '{
 "question_text": "What is the output of 2 + 2?",
@@ -431,7 +431,7 @@ Retrieve all quizzes (including expired ones).
 **cURL Example:**
 ```
 
-curl http://localhost:8080/api/quiz/all
+curl http://localhost:5000/api/quiz/all
 
 ```
 
@@ -460,7 +460,7 @@ Delete a quiz and all associated questions.
 **cURL Example:**
 ```
 
-curl -X DELETE http://localhost:8080/api/quiz/5
+curl -X DELETE http://localhost:5000/api/quiz/5
 
 ```
 
@@ -496,7 +496,7 @@ Get all quizzes currently within their time window.
 **cURL Example:**
 ```
 
-curl http://localhost:8080/api/quiz/active
+curl http://localhost:5000/api/quiz/active
 
 ```
 
@@ -531,7 +531,7 @@ Get detailed information about a specific quiz.
 **cURL Example:**
 ```
 
-curl http://localhost:8080/api/quiz/1
+curl http://localhost:5000/api/quiz/1
 
 ```
 
@@ -581,7 +581,7 @@ Get all questions for a quiz (without correct answers).
 **cURL Example:**
 ```
 
-curl http://localhost:8080/api/quiz/1/questions
+curl http://localhost:5000/api/quiz/1/questions
 
 ```
 
@@ -642,7 +642,7 @@ Submit quiz answers and get results.
 **cURL Example:**
 ```
 
-curl -X POST http://localhost:8080/api/quiz/submit \
+curl -X POST http://localhost:5000/api/quiz/submit \
 -H "Content-Type: application/json" \
 -d '{
 "quiz_id": 1,
@@ -693,7 +693,7 @@ Get top scores for a quiz.
 **cURL Example:**
 ```
 
-curl "http://localhost:8080/api/quiz/1/leaderboard?limit=5"
+curl "http://localhost:5000/api/quiz/1/leaderboard?limit=5"
 
 ```
 
@@ -703,7 +703,7 @@ curl "http://localhost:8080/api/quiz/1/leaderboard?limit=5"
 
 ### Home Page (`index.html`)
 
-**URL:** `http://localhost:8080/`
+**URL:** `http://localhost:5000/`
 
 **Features:**
 - Displays all active quizzes
@@ -720,7 +720,7 @@ curl "http://localhost:8080/api/quiz/1/leaderboard?limit=5"
 
 ### Quiz Page (`quiz.html`)
 
-**URL:** `http://localhost:8080/quiz.html?id=1`
+**URL:** `http://localhost:5000/quiz.html?id=1`
 
 **Features:**
 - Question display with multiple choice options
@@ -799,7 +799,7 @@ npm run dev
 
 # Open browser
 
-http://localhost:8080
+http://localhost:5000
 
 # Expected: See 4 quizzes listed
 
@@ -887,7 +887,7 @@ http://localhost:8080
 
 ```
 
-curl http://localhost:8080/api/quiz/active
+curl http://localhost:5000/api/quiz/active
 
 ```
 
@@ -908,7 +908,7 @@ curl http://localhost:8080/api/quiz/active
 
 ```
 
-curl http://localhost:8080/api/quiz/1/questions
+curl http://localhost:5000/api/quiz/1/questions
 
 ```
 
@@ -929,7 +929,7 @@ curl http://localhost:8080/api/quiz/1/questions
 
 ```
 
-curl -X POST http://localhost:8080/api/quiz/submit \
+curl -X POST http://localhost:5000/api/quiz/submit \
 -H "Content-Type: application/json" \
 -d '{
 "quiz_id": 1,
@@ -964,7 +964,7 @@ curl -X POST http://localhost:8080/api/quiz/submit \
 
 ```
 
-curl "http://localhost:8080/api/quiz/1/leaderboard?limit=3"
+curl "http://localhost:5000/api/quiz/1/leaderboard?limit=3"
 
 ```
 
@@ -992,21 +992,21 @@ Create a new Postman collection with these requests:
 **1. GET Active Quizzes**
 ```
 
-GET http://localhost:8080/api/quiz/active
+GET http://localhost:5000/api/quiz/active
 
 ```
 
 **2. GET Quiz Questions**
 ```
 
-GET http://localhost:8080/api/quiz/1/questions
+GET http://localhost:5000/api/quiz/1/questions
 
 ```
 
 **3. POST Submit Quiz**
 ```
 
-POST http://localhost:8080/api/quiz/submit
+POST http://localhost:5000/api/quiz/submit
 Headers: Content-Type: application/json
 Body (raw JSON):
 {
@@ -1021,7 +1021,7 @@ Body (raw JSON):
 **4. GET Leaderboard**
 ```
 
-GET http://localhost:8080/api/quiz/1/leaderboard?limit=10
+GET http://localhost:5000/api/quiz/1/leaderboard?limit=10
 
 ```
 ---
