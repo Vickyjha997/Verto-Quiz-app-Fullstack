@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Application - Home</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header class="main-header">
+            <h1>🎯 Quiz Application</h1>
+            <p class="tagline">Test your knowledge with timed quizzes!</p>
+        </header>
+
+        <main class="home-content">
+            <section class="quiz-list-section">
+                <h2>Available Quizzes</h2>
+                <div id="loading" class="loading">Loading quizzes...</div>
+                <div id="quiz-list" class="quiz-list"></div>
+                <div id="error-message" class="error-message" style="display: none;"></div>
+            </section>
+
+            <section class="info-section">
+                <h3>How It Works</h3>
+                <div class="info-cards">
+                    <div class="info-card">
+                        <div class="info-icon">⏱️</div>
+                        <h4>Timed Questions</h4>
+                        <p>Each question has its own time limit. Answer quickly!</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-icon">📅</div>
+                        <h4>Quiz Timeframe</h4>
+                        <p>Quizzes are available within specific time windows.</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-icon">🏆</div>
+                        <h4>Leaderboard</h4>
+                        <p>See how you rank against other participants!</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="main-footer">
+            <p>&copy; 2025 Quiz Application. Built with ❤️</p>
+        </footer>
+    </div>
+
+    <script>
+        const API_BASE = 'http://localhost:5000/api/quiz';
+
+        // Load active quizzes
+        async function loadQuizzes() {
+            const loadingEl = document.getElementById('loading');
+            const quizListEl = document.getElementById('quiz-list');
+            const errorEl = document.getElementById('error-message');
+
+            try {
+                console.log('📡 Fetching quizzes from:', `${API_BASE}/active`);
+                
+                const response = await fetch(`${API_BASE}/active`);
+                const data = await response.json();
+
+                console.log('📥 Quizzes received:', data);
+
+                loadingEl.style.display = 'none';
+
+                if (!data.success || data.quizzes.length === 0) {
+                    quizListEl.innerHTML = '<p class="no-quizzes">No active quizzes available at the moment. Please check back later!</p>';
+                    return;
+                }
+
+                quizListEl.innerHTML = data.quizzes.map(quiz => `
+                    <div class="quiz-card">
+                        <h3>${quiz.title}</h3>
+                        <p class="quiz-description">${quiz.description || 'No description available'}</p>
+                        <div class="quiz-meta">
+                            <div class="meta-item">
+                                <span class="meta-label">⏰ Starts:</span>
+                                <span class="meta-value">${formatDate(quiz.start_time)}</span>
+                            </div>
+                            <div class="meta-item">
+                                <span class="meta-label">⏳ Ends:</span>
+                                <span class="meta-value">${formatDate(quiz.end_time)}</span>
+                            </div>
+                        </div>
+                        <button class="btn-primary" onclick="startQuiz(${quiz.id})">
+                            Start Quiz
+                        </button>
+                    </div>
+                `).join('');
+
+            } catch (error) {
+                console.error('❌ Error loading quizzes:', error);
+                loadingEl.style.display = 'none';
+                errorEl.textContent = 'Failed to load quizzes. Please check if the server is running on port 5000.';
+                errorEl.style.display = 'block';
+            }
+        }
+
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleString('en-IN', {
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+        }
+
+        function startQuiz(quizId) {
+            console.log('🚀 Starting quiz:', quizId);
+            window.location.href = `quiz.html?id=${quizId}`;
+        }
+
+        // Load quizzes on page load
+        document.addEventListener('DOMContentLoaded', loadQuizzes);
+    </script>
+</body>
+</html>

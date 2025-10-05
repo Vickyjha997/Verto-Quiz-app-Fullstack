@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz - In Progress</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Favicon (optional) -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎯</text></svg>">
+</head>
+<body>
+    <div class="container">
+        <!-- Quiz Container -->
+        <div id="quiz-container" class="quiz-container">
+            <div class="quiz-header">
+                <div class="header-left">
+                    <h2 id="quiz-title" class="quiz-title">Loading Quiz...</h2>
+                    <p id="quiz-description" class="quiz-subtitle"></p>
+                </div>
+                <div class="header-right">
+                    <div id="overall-timer" class="timer overall-timer">
+                        <span class="timer-label">Time Remaining: </span>
+                        <span class="timer-value">--:--:--</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="progress-bar">
+                <div id="progress-fill" class="progress-fill"></div>
+                <span id="progress-text" class="progress-text">0%</span>
+            </div>
+
+            <div id="question-container" class="question-container">
+                <div class="question-header">
+                    <span id="question-counter" class="question-counter">Question 0 of 0</span>
+                    <div id="question-timer" class="timer question-timer">--s</div>
+                </div>
+
+                <h3 id="question-text" class="question-text">Loading question...</h3>
+
+                <div id="options" class="options-container"></div>
+            </div>
+
+            <div class="navigation">
+                <button id="prev-btn" class="btn btn-secondary" disabled>
+                    ← Previous
+                </button>
+                <div class="nav-center">
+                    <span id="answered-count" class="answered-info">Answered: 0/0</span>
+                </div>
+                <button id="next-btn" class="btn btn-primary">
+                    Next →
+                </button>
+                <button id="submit-btn" class="btn btn-success" style="display: none;">
+                    📤 Submit Quiz
+                </button>
+            </div>
+        </div>
+
+        <!-- Results Container -->
+        <div id="results-container" class="results-container" style="display: none;">
+            <div class="results-card">
+                <h2 class="results-title">🎉 Quiz Completed!</h2>
+                
+                <div class="score-display">
+                    <div class="score-circle">
+                        <span id="score-percentage" class="score-percentage">0%</span>
+                    </div>
+                    <p id="score-text" class="score-text">You scored 0 out of 0</p>
+                </div>
+
+                <div id="detailed-results" class="detailed-results"></div>
+
+                <h3 class="leaderboard-title">🏆 Top Scores</h3>
+                <div id="leaderboard" class="leaderboard">
+                    <p class="loading-text">Loading leaderboard...</p>
+                </div>
+
+                <div class="results-actions">
+                    <button class="btn btn-primary" onclick="window.location.href='index.html'">
+                        🏠 Back to Home
+                    </button>
+                    <button class="btn btn-secondary" onclick="location.reload()">
+                        🔄 Retake Quiz
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Loading Overlay -->
+        <div id="loading-overlay" class="loading-overlay" style="display: none;">
+            <div class="spinner"></div>
+            <p>Loading quiz...</p>
+        </div>
+    </div>
+
+    <script src="quiz.js"></script>
+</body>
+</html>
